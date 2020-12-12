@@ -27,6 +27,10 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include <stdio.h>
+
+#include "oled.h"
+#include "test.h"
+#include "gui.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -72,7 +76,7 @@ int _write(int file, char *ptr, int len)
 int main(void)
 {
   /* USER CODE BEGIN 1 */
-  uint8_t i = 0;
+  //uint8_t i = 0;
   /* USER CODE END 1 */
   
 
@@ -97,6 +101,13 @@ int main(void)
   MX_I2C2_Init();
   MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
+  HAL_GPIO_WritePin(LED1_GPIO_Port, LED1_Pin, GPIO_PIN_SET);    // LED1 off
+  HAL_GPIO_WritePin(LED2_GPIO_Port, LED2_Pin, GPIO_PIN_SET);    // LED2 off
+  HAL_GPIO_WritePin(LED3_GPIO_Port, LED3_Pin, GPIO_PIN_SET);    // LED3 off
+  HAL_GPIO_WritePin(LED4_GPIO_Port, LED4_Pin, GPIO_PIN_SET);    // LED4 off
+
+  OLED_Init();
+  OLED_Clear(0x00);
 
   /* USER CODE END 2 */
 
@@ -104,12 +115,37 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+
+	  TEST_MainPage();
+	  OLED_Clear(0);
+	  Test_Color();
+	  OLED_Clear(0);
+	  Test_Rectangular();
+	  OLED_Clear(0);
+	  Test_Circle();
+	  OLED_Clear(0);
+	  Test_Triangle();
+	  OLED_Clear(0);
+	  TEST_English();
+	  OLED_Clear(0);
+	  TEST_Number_Character();
+	  OLED_Clear(0);
+	  TEST_Chinese();
+	  OLED_Clear(0);
+	  TEST_BMP();
+	  OLED_Clear(0);
+	  TEST_Menu1();
+	  OLED_Clear(0);
+	  TEST_Menu2();
+	  OLED_Clear(0);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-      HAL_GPIO_TogglePin(LED1_GPIO_Port, LED1_Pin);
-      HAL_Delay(1000);
-      printf("UART1 Test %3d\r\n", i++);
+#if 0
+	  HAL_GPIO_TogglePin(LED1_GPIO_Port, LED1_Pin);
+	  printf("UART1 Test %d \r\n", i++);
+	  HAL_Delay(500);
+#endif
   }
   /* USER CODE END 3 */
 }
