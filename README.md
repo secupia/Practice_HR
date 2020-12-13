@@ -5,3 +5,5 @@
 
 # Hear Rate Sensor
 - MAX30102
+
+![STM32 BSKO Board](./image/BSKO_OLED_SH1106_1.jpg)
