@@ -1,13 +1,13 @@
 ## 파일 무시 
-test.txt 
+# test.txt 
 
 ## 다음과 같은 확장자는 전체 무시 
 
-*.txt 
+#*.txt 
 *.exe 
 *.zip
-*.jpg
-*.png 
+#*.jpg
+#*.png 
 
 ## 폴더 무시 
 
