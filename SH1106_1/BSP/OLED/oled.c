@@ -47,9 +47,10 @@
 #include "string.h" 	 
 //#include "delay.h"
 //#include "iic.h"
-#include "main.h"
+
 #include "i2c.h"
 #include "common.h"
+
 //OLED显存总共分为8页
 //每页8行，一行128个像素点
 //OLED的显存

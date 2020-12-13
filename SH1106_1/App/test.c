@@ -50,7 +50,6 @@
 #include "test.h"
 #include "bmp.h"
 
-//#include "main.h"
 #include "stm32f1xx_hal.h"
 /*****************************************************************************
  * @name       :void TEST_MainPage(void)

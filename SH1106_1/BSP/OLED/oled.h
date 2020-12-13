@@ -56,7 +56,7 @@
 #define HEIGHT 	     64	
 
 //-------------写命令和数据定义-------------------
-#define OLED_CMD     0	//写命令
+#define OLED_CMD      0x00	//写命令
 //#define OLED_DATA    1	//写数据
 #define OLED_DATA     0x40
 #define OLED_I2C_ADDR 0x78

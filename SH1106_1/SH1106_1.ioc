@@ -1,5 +1,7 @@
 #MicroXplorer Configuration settings - do not modify
 File.Version=6
+I2C2.I2C_Mode=I2C_Standard
+I2C2.IPParameters=I2C_Mode
 KeepUserPlacement=false
 Mcu.Family=STM32F1
 Mcu.IP0=I2C2
