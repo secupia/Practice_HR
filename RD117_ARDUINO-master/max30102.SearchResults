@@ -1,0 +1,4 @@
+---- maxim_max30102_init Matches (3 in 3 files) ----
+max30102.cpp:bool maxim_max30102_init()
+max30102.h:bool maxim_max30102_init();
+RD117_ARDUINO.ino (RD117_ARDUINO):  maxim_max30102_init();  //initialize the MAX30102
