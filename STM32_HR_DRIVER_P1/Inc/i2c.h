@@ -15,6 +15,14 @@
 //void SW_I2C_initial(void);
 
 void i2c_port_initial(uint8_t sel);
+void i2c_start_condition(uint8_t sel);
+void i2c_stop_condition(uint8_t sel);
+//uint8_t i2c_check_ack(uint8_t sel);
+//void i2c_check_not_ack(uint8_t sel);
+//void i2c_slave_address(uint8_t sel, uint8_t IICID, uint8_t readwrite);
+//void i2c_register_address(uint8_t sel, uint8_t addr);
+void i2c_send_ack(uint8_t sel);
+
 
 uint8_t SW_I2C_ReadVal_SDA(uint8_t sel);
 

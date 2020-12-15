@@ -308,6 +308,7 @@ uint8_t SW_I2C_WriteControl_8Bit(uint8_t sel, uint8_t IICID, uint8_t regaddr, ui
 
 	return returnack;
 }
+
 uint8_t SW_I2C_WriteControl_8Bit_OnlyRegAddr(uint8_t sel, uint8_t IICID, uint8_t regaddr)
 {
 	uint8_t returnack = TRUE;

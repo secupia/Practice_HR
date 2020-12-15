@@ -176,47 +176,67 @@ bool maxim_max30102_read_fifo(uint32_t *pun_red_led, uint32_t *pun_ir_led)
 */
 {
 
-  uint32_t un_temp;
-  uint8_t uch_temp;
-  *pun_ir_led=0;
-  *pun_red_led=0;
-  maxim_max30102_read_reg(REG_INTR_STATUS_1, &uch_temp);
-  maxim_max30102_read_reg(REG_INTR_STATUS_2, &uch_temp);
+    uint32_t un_temp;
+    uint8_t uch_temp;
+    *pun_ir_led = 0;
+    *pun_red_led = 0;
+
+    uint8_t pData[6] = {0,};
+
+     maxim_max30102_read_reg(REG_INTR_STATUS_1, &uch_temp);
+     maxim_max30102_read_reg(REG_INTR_STATUS_2, &uch_temp);
+
+     SW_I2C_Multi_ReadnControl_8Bit(0, I2C_READ_ADDR, REG_FIFO_DATA, 6, pData);
 #if 0
-  if(!i2c_start(I2C_WRITE_ADDR))
-    return false;
-  if(!i2c_write(REG_FIFO_DATA))
-    return false;
-  if(!i2c_rep_start(I2C_READ_ADDR))
-    return false;  
-  un_temp=i2c_read(false);
+      if(!i2c_start(I2C_WRITE_ADDR))
+        return false;
+      if(!i2c_write(REG_FIFO_DATA))
+        return false;
+      if(!i2c_rep_start(I2C_READ_ADDR))
+        return false;
+      un_temp=i2c_read(false);
+      un_temp<<=16;
+      *pun_red_led+=un_temp;
+      un_temp=i2c_read(false);
+      un_temp<<=8;
+      *pun_red_led+=un_temp;
+      un_temp=i2c_read(false);
+      *pun_red_led+=un_temp;
+
+      un_temp=i2c_read(false);
+      un_temp<<=16;
+      *pun_ir_led+=un_temp;
+      un_temp=i2c_read(false);
+      un_temp<<=8;
+      *pun_ir_led+=un_temp;
+      un_temp=i2c_read(true);
+      *pun_ir_led+=un_temp;
+      i2c_stop();
+      *pun_red_led&=0x03FFFF;  //Mask MSB [23:18]
+      *pun_ir_led&=0x03FFFF;  //Mask MSB [23:18]
+      return true;
 #endif
+      un_temp = pData[0];
+      un_temp<<=16;
+      *pun_red_led+=un_temp;
+      un_temp=pData[1];
+      un_temp<<=8;
+      *pun_red_led+=un_temp;
+      un_temp=pData[2];
+      *pun_red_led+=un_temp;
 
-  #if 0
-  maxim_max30102_read_reg(REG_FIFO_DATA, &un_temp);
+      un_temp=pData[3];
+      un_temp<<=16;
+      *pun_ir_led+=un_temp;
+      un_temp=pData[4];
+      un_temp<<=8;
+      *pun_ir_led+=un_temp;
+      un_temp=pData[5];
+      *pun_ir_led+=un_temp;
 
-  un_temp<<=16;
-  *pun_red_led+=un_temp;
+      *pun_red_led&=0x03FFFF;  //Mask MSB [23:18]
+      *pun_ir_led&=0x03FFFF;  //Mask MSB [23:18]
 
-  un_temp=i2c_read(false);
-  un_temp<<=8;
-  *pun_red_led+=un_temp;
-  un_temp=i2c_read(false);
-  *pun_red_led+=un_temp;
-  
-  un_temp=i2c_read(false);
-  un_temp<<=16;
-  *pun_ir_led+=un_temp;
-  un_temp=i2c_read(false);
-  un_temp<<=8;
-  *pun_ir_led+=un_temp;
-  un_temp=i2c_read(true);
-  *pun_ir_led+=un_temp;
-  //i2c_stop();
-  *pun_red_led&=0x03FFFF;  //Mask MSB [23:18]
-  *pun_ir_led&=0x03FFFF;  //Mask MSB [23:18]
-  return true;
-#endif
 }
 
 bool maxim_max30102_reset()
