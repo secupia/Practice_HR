@@ -123,7 +123,8 @@ int main(void)
           }
 	      maxim_max30102_read_fifo((aun_red_buffer+i), (aun_ir_buffer+i));  //read from MAX30102 FIFO
           //printf("RED[%3d] = %10d  IR[%3d] = %10d \r\n", aun_red_buffer[i], aun_ir_buffer[i]);
-	      printf("RED %6d   IR %6d\r\n", aun_red_buffer[i], aun_ir_buffer[i]);
+	      //printf("RED %6d   IR %6d\r\n", aun_red_buffer[i], aun_ir_buffer[i]);
+	      printf("$RED %6d   IR %6d;\r\n", aun_red_buffer[i], aun_ir_buffer[i]);
           HAL_Delay(00);
 	  }
 

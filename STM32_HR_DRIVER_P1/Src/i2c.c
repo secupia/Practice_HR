@@ -2,7 +2,8 @@
 #include "common.h"
 #include "i2c.h"
 
-#define SW_I2C_WAIT_TIME 		22 //100Khz(10.0us) 100Khz == 10us
+//#define SW_I2C_WAIT_TIME 		22 //100Khz(10.0us) 100Khz == 10us
+#define SW_I2C_WAIT_TIME        10
 
 #define I2C_READ 		0x01
 #define READ_CMD 		1
@@ -274,6 +275,9 @@ uint8_t SW_I2C_Read_Data(uint8_t sel)
 	sda_out_mode(sel);
 	return readdata;
 }
+/**
+ *  Writing One Data byte to the MAX30102
+ */
 uint8_t SW_I2C_WriteControl_8Bit(uint8_t sel, uint8_t IICID, uint8_t regaddr, uint8_t data)
 {
 	uint8_t returnack = TRUE;
@@ -451,11 +455,14 @@ uint16_t SW_I2C_ReadControl_16Bit_OnlyData(uint8_t sel, uint8_t IICID)
 	return readdata;
 }
 
+/**
+ *  Reading One Byte of Data from MAX30102
+ */
 uint8_t SW_I2C_ReadControl_8Bit(uint8_t sel, uint8_t IICID, uint8_t regaddr)
 {
 	uint8_t readdata = 0;
 
-	i2c_port_initial(sel);
+	i2c_port_initial(sel);    // Set High, SCL & SDA
 
 	i2c_start_condition(sel);
 
@@ -567,6 +574,9 @@ uint8_t SW_I2C_ReadnControl_8Bit(uint8_t sel, uint8_t IICID, uint8_t regaddr, ui
 	return returnack;
 }
 
+/**
+ *  Reading Multiple Bytes of Data from the MAX30102
+ */
 uint8_t SW_I2C_Multi_ReadnControl_8Bit(uint8_t sel, uint8_t IICID, uint8_t regaddr, uint8_t rcnt, uint8_t (*pdata))
 {
 	uint8_t returnack = TRUE;
