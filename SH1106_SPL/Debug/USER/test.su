@@ -1,0 +1,11 @@
+test.c:60:6:TEST_MainPage	16	static
+test.c:77:6:Test_Color	16	static
+test.c:95:6:Test_Rectangular	16	static
+test.c:117:6:Test_Circle	16	static
+test.c:138:6:Test_Triangle	24	static
+test.c:158:6:TEST_English	16	static
+test.c:175:6:TEST_Number_Character	16	static
+test.c:195:6:TEST_Chinese	16	static
+test.c:218:6:TEST_BMP	16	static
+test.c:235:6:TEST_Menu1	24	static
+test.c:294:6:TEST_Menu2	24	static

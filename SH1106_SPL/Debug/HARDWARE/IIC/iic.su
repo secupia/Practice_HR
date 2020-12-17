@@ -1,0 +1,6 @@
+iic.c:54:6:IIC_Start	8	static
+iic.c:69:6:IIC_Stop	8	static
+iic.c:83:6:IIC_Wait_Ack	8	static
+iic.c:96:6:Write_IIC_Byte	24	static
+iic.c:127:6:Write_IIC_Command	16	static
+iic.c:146:6:Write_IIC_Data	16	static
